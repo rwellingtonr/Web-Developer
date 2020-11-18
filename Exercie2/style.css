@@ -1,0 +1,28 @@
+body{
+    margin: 0px;
+}
+h1{
+    font-size: 3em;
+    font-family: 'Indie Flower', cursive;
+    border-bottom: 2px solid purple;
+    text-align: center;
+    width: 400px;
+    border: 2px solid purple;
+    box-shadow: 4px 4px 5px #888888;
+    margin-top: 10px;
+}
+img{
+    width: 450px;
+    height: 300px;
+    margin: 10px;
+    transition: all 1s;
+}
+img:hover{
+    transform: scale(1.2);
+    
+}
+.container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
