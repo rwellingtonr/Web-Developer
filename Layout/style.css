@@ -43,6 +43,10 @@ a{
 .push{
     margin-left: auto;
 }
+.container-fluid{
+    margin: 0px;
+    padding: 0px;
+}
 /*COVER*/
 .container{
     display: flex;
@@ -59,7 +63,6 @@ a{
     display: grid;
     grid-row-gap: 20px;
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    width: 100%;
 }
 .box > img {
     width: 100%;
@@ -77,7 +80,6 @@ a{
 /*FOOTER*/
 footer{
     text-align: center;
-    width: 100%;
 }
 
 /*https://paulund.co.uk/how-to-create-shiny-css-buttons*/
