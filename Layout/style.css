@@ -3,6 +3,7 @@ body{
     font-family: Arial, Helvetica, sans-serif;
     right: 0px;
     padding-right: 0px;
+    /*Last chance*/
 }
 .zone {
     display: grid;
