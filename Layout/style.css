@@ -43,10 +43,6 @@ a{
 .push{
     margin-left: auto;
 }
-.container-fluid{
-    margin: 0px;
-    padding: 0px;
-}
 /*COVER*/
 .container{
     display: flex;
@@ -73,9 +69,8 @@ a{
 
 }
 .box{
-   /* background-color: #444;*/
-    padding: 130px;
-    margin: 20px;
+    padding: 100px;
+    margin: 50px;
 }
 /*FOOTER*/
 footer{
