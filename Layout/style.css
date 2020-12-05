@@ -1,10 +1,11 @@
 body{
     margin: auto 0;
     font-family: Arial, Helvetica, sans-serif;
+    right: 0px;
+    padding-right: 0px;
 }
 .zone {
     display: grid;
-    align-items: center;
     cursor:pointer;
     align-content: center;
     color:#FFF;
