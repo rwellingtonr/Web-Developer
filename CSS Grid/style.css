@@ -4,7 +4,7 @@
     /*you can use % or fr to separete the grids*/
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
    /* grid-template-columns: auto 1fr 2fr;*/
-    grid-template-rows: 1fr;
+    grid-template-rows: repeat(auto-fll, minmax(350px, 1fr));
 }
 
 .zone {
