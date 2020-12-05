@@ -1,14 +1,20 @@
 body{
     margin: auto 0;
+    font-family: Arial, Helvetica, sans-serif;
 }
 .zone {
     display: flex;
     cursor:pointer;
+    align-content: center;
     color:#FFF;
     font-size:2em;
     border-radius:4px;
     border:1px solid #bbb;
     transition: all 0.4s linear;
+<<<<<<< HEAD
+    right: 0px;
+=======
+>>>>>>> 3f5f1cb443c9316585966d5d6dfc17881753b257
 }
 .zone:hover {
     -webkit-box-shadow:rgba(0,0,0,0.8) 0px 5px 15px, inset rgba(0,0,0,0.15) 0px -10px 20px;
@@ -23,10 +29,17 @@ body{
     font-size: 0.7em;
     margin: 2px;    
 }
+<<<<<<< HEAD
+@media only screen and (max-width: 780px){
+    body{
+        padding-right: 0px;
+        right: 0px;
+=======
 @media only screen and (max-width: 600px){
     body{
        padding: 0px;
        width: 100%;
+>>>>>>> 3f5f1cb443c9316585966d5d6dfc17881753b257
     }
     .main-nav{
         font-size: 0.5em;
