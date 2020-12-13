@@ -1,0 +1,38 @@
+.column{
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+
+
+}
+.hero-footer{
+    padding: 2rem;
+}
+#grid{
+    width: 768px;
+    display: grid;
+    grid-template-areas: "a a a a" "b c d e";
+    gap: 1rem;
+}
+.button{
+    width: 100%; 
+    border: 0.15em solid white;
+}
+@media (max-width: 512px){
+    #grid{
+        grid-template-areas: "a a a" "b c d" "e e e";
+    }
+}
+.fa-tachometer-alt{
+    width: 0.85em; 
+    height: 0.85em;
+}
+
+#a {grid-area: a;}
+#b {grid-area: b;}
+#c {grid-area: c;}
+#d {grid-area: d;}
+#e {grid-area: e;}
+
+#c, #d {
+    border-left: 1px solid gray;
+}

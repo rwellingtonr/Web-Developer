@@ -1,5 +1,25 @@
+html{
+    font-family: 'Open Sans', sans-serif !important;
+    font-weight: 400;
+    margin: auto 0;
+}
 .hero{
     background: black url("img/cover_bigger.jpg") center / cover;
+}
+.hero-head{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.navbar-item, .hero-body{
+    color: #000;
+    font-weight: bold;
+    transition: 0.2s;
+}
+.navbar-item:hover, .hero-body:hover{
+    color: rgb(253, 244, 244);
+}
+.navbar-item{
+    font-size: 14px;
 }
 .center, .center-column, .top, .right, .bottom, .left {
 	display: flex;
@@ -7,18 +27,14 @@
 	align-items: center;
 }
 .image{
-    width: 10rem; 
+    width: 7rem; 
     height: 2rem;
     position:fixed;
 }
 
-.image-i{
-    width: 1.2rem; 
-    height: 2rem;
-    /*position: fixed;*/
-}
-.fas{
-    width: 100%;
+.fa-bars{
+    width: 1.5em; 
+    height: 1.5rem;
 }
 
 .center-column {
@@ -34,9 +50,9 @@
     line-height: 1;
 }
 .li{
-    padding: 20px;
+    margin: 10px;
 }
-@media (max-width: 1024px){
+@media (max-width: 1200px){
     .desktop {
         display: none;
         visibility: hidden;

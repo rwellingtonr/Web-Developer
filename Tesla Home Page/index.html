@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="grid.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.0/css/bulma.min.css">
 	<script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
@@ -15,46 +18,73 @@
     <section class="hero is-fullheight">
     
     <!-- .hero-head -->
-    <nav class="hero-head">
-        <div class="columns is-mobile is-marginless heading has-text-weight-bold">
-            <div class="column left">
-                <figure class="navbar-item image">
-                    <img src="img/tesla.svg">
-                </figure>
-            </div>
-            <div class="column center desktop">
-                <ul class="center desktop">
-                    <li class="navbar-item has-text-black">MODEL S </li>
-                    <li class="navbar-item has-text-black">MODEL X </li>
-                    <li class="navbar-item has-text-black">MODEL 3 </li>
-                    <li class="navbar-item has-text-black">ROADSTER</li>
-                    <li class="navbar-item has-text-black">ENERGY  </li>
-                </ul>
-            </div>
-            <div class="column right">
-                <ul class="right">
-                    <li class="navbar-item has-text-black desktop right">SHOP   </li>
-                    <li class="navbar-item has-text-black desktop right">SIGN IN</li>
-                    <figure class="navbar-item image-i has-text-black right">
-                        <i class="fas fa-bars right"></i>
+        <nav class="hero-head">
+            <div class="columns is-mobile heading">
+                <div class="column left">
+                    <figure class="navbar-item image">
+                        <img src="img/tesla.svg" title="Tesla, Inc">
                     </figure>
-                </ul>
+                </div>
+                <div class="column center desktop">
+                    <ul class="center desktop">
+                        <li class="navbar-item">MODEL S</li>
+                        <li class="navbar-item">MODEL 3</li>
+                        <li class="navbar-item">MODEL X</li>
+                        <li class="navbar-item">MODEL Y</li>
+                        <li class="navbar-item">SOLAR ROOF</li>
+                        <li class="navbar-item ">SOLAR PANELS</li>
+                    </ul>
+                </div>
+                <div class="column right">
+                    <ul class="right has-text-centered">
+                        <li class="navbar-item desktop right">SHOP   </li>
+                        <li class="navbar-item desktop right">TESLA ACCOUNT</li>
+                        <p class="title has-text-white right">
+                            <i class="fas fa-bars right"></i></p>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </nav>
-    <!-- /.hero-head -->
-    
-    <!-- .hero-body -->
-    <header class="hero-body">
-        <div class="is-overlay has-text-centered single-spaced" style="top: 82px;">
-            <h1 class="subtitle is-4 has-text-weight-light has-text-black">Tesla</h1>
-            <h2 class="title is-1 has-text-black">Roadster</h2>
-        </div>
-    </header>
-    <!-- .hero-body -->
-    
+        </nav>
+   
+        <header class="hero-body">
+            <div class="is-overlay has-text-centered single-spaced" style="top: 10%;">
+                <h2 class="title is-1">Roadster</h2>
+            </div>
+        </header>
+        
+        <footer class="hero-footer center">
+            <div id="grid">
+                <div id="a" class="center-column">
+                    <p class="has-text-centered has-text-white">
+                        ​The quickest car in the world, with record-setting<br>
+                        acceleration, range and performance.
+                    </p>
+                </div>
+                <div id="b" class="center-column">
+                    <p class="title has-text-white">
+                        <i class="fas fa-tachometer-alt has-text-grey-light"></i>
+                        1.9<span class="is-size-5">s</span>
+                    </p>
+                    <p class="subtitle has-text-white is-7">0-60 mph</p>
+                </div>
+                <div id="c" class="center-column">
+                    <p class="title has-text-white"><span class="is-size-5">+</span>250<span class="is-size-5">mph</span></p>
+                    <p class="subtitle is-7 has-text-white">Top Speed</p>
+                </div>
+                <div id="d" class="center-column">
+                    <p class="title has-text-white">620</span><span class="is-size-5">mi</span></p>
+                    <p class="subtitle is-7 has-text-white">Mile Range</p>
+                </div>
+                <div id="e" class="center-column">
+                    <a class="button is-danger is-inverted is-rounded is-outlined has-text-weight-bold">
+                        Reserve Now
+                    </a>
+                </div>
+            </div>
+
+        </footer>
+   
     </section>
-    <!-- /.hero -->
     
-        </body>
+</body>
 </html>
