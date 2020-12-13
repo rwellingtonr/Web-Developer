@@ -17,7 +17,7 @@
     width: 100%; 
     border: 0.15em solid white;
 }
-@media (max-width: 512px){
+@media (max-width: 650px){
     #grid{
         grid-template-areas: "a a a" "b c d" "e e e";
     }
