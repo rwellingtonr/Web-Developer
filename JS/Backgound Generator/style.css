@@ -1,0 +1,23 @@
+html{
+    height: 100%;
+}
+body{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 20px;
+    color: rgba(0, 0, 0, .5);
+    text-transform: uppercase;
+    letter-spacing: .5em;
+    text-align: center;
+    top: 15%;
+    background-repeat: no-repeat;
+    background: linear-gradient(to top right, red, yellow);
+}
+h1{
+    font: 600 3.5em 'Courier New', Courier, monospace;
+    width: 100%;
+}
+h3{
+    font: 900 1em 'Courier New', Courier, monospace;
+    text-transform: none;
+    letter-spacing: 0.01em;
+}
