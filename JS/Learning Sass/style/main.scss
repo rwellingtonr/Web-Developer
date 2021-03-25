@@ -1,0 +1,35 @@
+@import './variables';
+@import './reset';
+
+@function weight($key){
+    @return map-get($font-weight, $key)
+}
+
+@mixin flexCenter ($direction) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: $direction;
+}
+
+body {
+    background-color: $primary-color;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    text-align: justify;
+
+    .container{
+        @include flexCenter(column);
+
+        h1{
+            color: lighten(yellow, 10%);
+            font-weight: weight(bold);
+        }   
+        a{
+            color: darken(white, 20%);
+            font-weight: map-get($font-weight, regular );
+            text-decoration: none;
+        }
+    }
+}
