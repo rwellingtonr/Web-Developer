@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import SearchField from './SearchField';
 import Cardlist from './Cardlist';
+import Scroll from './Scroll';
+
 
 class App extends Component {
   constructor(){
@@ -29,7 +31,9 @@ class App extends Component {
       <div className='tc'>
         <h1 className='f1'>Monsters</h1>
         <SearchField runQUery={this.onSearchChange}/>
-        <Cardlist users={searchMonster} />
+        <Scroll>  
+          <Cardlist users={searchMonster} />
+        </Scroll>
       </div>
     );
   }
