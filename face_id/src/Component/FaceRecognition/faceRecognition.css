@@ -1,0 +1,13 @@
+.bounding-box {
+	position: absolute;
+	box-shadow: 0 0 0 3px #149df2 inset;
+	display: flex;
+	flex-wrap: wrap;
+	cursor: pointer;
+	justify-content: center;
+	border-radius: 5%;
+}
+.bounding-box:hover {
+	background-color: rgba(20, 157, 242, 0.2);
+	transition: 0.2s;
+}
