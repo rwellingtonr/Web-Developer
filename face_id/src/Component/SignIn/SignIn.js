@@ -6,21 +6,21 @@ const SignIn = ({ onRouteChange }) => {
             <main className="pa4 black-80">
                 <div className="measure">
                     <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
-                    <legend className="f2 fw6 ph0 mh0">Sign In</legend>
+                    <legend className="f2 fw6 ph0 center mh0">Sign In</legend>
                     {/* email */}
                     <div className="mt3">
-                        <label className="db fw6 lh-copy f6" for="email-address">Email</label>
+                        <label className="db fw6 lh-copy f5" for="email-address">Email</label>
                         <input className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" type="email" name="email-address"  id="email-address" />
                     </div>
                     {/* Password */}
                     <div className="mv3">
-                        <label className="db fw6 lh-copy f6" htmlFor="password">Password</label>
+                        <label className="db fw6 lh-copy f5" htmlFor="password">Password</label>
                         <input className="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" type="password" name="password"  id="password" />
                     </div>
                     </fieldset>
                     <div className="">
                         <input 
-                        className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib hover-white hover-bg-black" 
+                        className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f5 dib hover-white hover-bg-black" 
                         type="submit" 
                         value="Sign in" 
                         onClick={() => onRouteChange('home')}
