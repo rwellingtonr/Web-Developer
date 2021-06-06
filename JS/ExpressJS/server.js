@@ -1,4 +1,6 @@
 import express from "express"
+import mbodyParser from "body-parser"
+import bodyParser from "body-parser"
 
 const app = express()
 
@@ -7,11 +9,18 @@ const routes = {
 	main: "/",
 }
 
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+
 app.get(routes.main, (req, res) => {
-	res.send("I am in the Main page!")
+	res.send("TEST")
 })
 
 app.get(routes.profile, (req, res) => {
+	res.send("Getting profile")
+})
+
+app.post(routes.profile, (req, res) => {
 	// User json
 	const user = {
 		name: "Wellington",
