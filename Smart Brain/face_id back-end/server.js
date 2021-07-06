@@ -8,74 +8,101 @@
 
 */
 
-import express from "express";
-import cors from "cors";
+import express from "express"
+import cors from "cors"
+import kenx from "knex"
+import bcrypt from "bcrypt"
+//server
+const app = express()
+app.use(cors())
+app.use(express.json)
 
-const app = express();
-
-app.use(cors());
+//Database
+const db = kenx({
+  client: "pg",
+  connection: {
+    host: "127.0.0.1",
+    user: "postgres",
+    password: "Leardini213++",
+    database: "postgres",
+  },
+})
 
 // Root Page
-app.get("/", (req, res) => {});
+app.get("/", (req, res) => {})
 //Signin Page
 app.post("/signin", (req, res) => {
   if (
     req.body.email === database.users[0].email &&
     req.body.password === database.users[0].password
   ) {
-    res.json("Working Sing In!");
+    res.json("Working Sing In!")
   } else {
-    res.status(400).json("error to logging in");
+    res.status(400).json("error to logging in")
   }
-});
+})
 
 //Register Page
 app.post("/register", (req, res) => {
-  const { password, email, name } = req.body;
-  database.users.push({
-    name: name,
-    id: 125,
-    email: email,
-    password: password,
-    entries: 0,
-    joined: new Date(),
-  });
-
-  res.json(database.users[database.users.length - 1]);
-});
+  const { password, email, name } = req.body
+  //hash password
+  const saltRounds = 10
+  const salt = bcrypt.genSaltSync(saltRounds)
+  const hash = bcrypt.hashSync(password, salt)
+  //write into the Database
+  db.transaction((trx) => {
+    trx
+      .insert({
+        hash: hash,
+        email: email,
+      })
+      .into("login")
+      .returning("email")
+      .then(async (loginEmail) => {
+        const user = await trx("users").returning("*").insert({
+          email: loginEmail[0],
+          name: name,
+          joined: new Date(),
+        })
+        res.json(user[0])
+      })
+      .then(trx.commit)
+      .catch(trx.rollback)
+  }).catch((err) => res.status(400).json("unable to register"))
+})
 
 //Profile/:userId Page
 app.get("/profile/:id", (req, res) => {
-  const { id } = req.params;
-  let found = false;
+  const { id } = req.params
+  let found = false
   database.users.forEach((user) => {
     if (user.id === parseInt(id)) {
-      found = true;
-      return res.json(user);
+      found = true
+      return res.json(user)
     }
-  });
+  })
   if (!found) {
-    res.status(400).json("Couldn't find this user");
+    res.status(400).json("Couldn't find this user")
   }
-});
+})
 
 //Image Page
 app.post("/image", (req, res) => {
-  const { id } = req.body;
-  let found = false;
+  const { id } = req.body
+  let found = false
   database.users.forEach((user) => {
     if (user.id === parseInt(id)) {
-      found = true;
-      user.entries++;
-      return res.json(user.entries);
+      found = true
+      user.entries++
+      return res.json(user.entries)
     }
-  });
+  })
   if (!found) {
-    res.status(400).json("Couldn't find this user");
+    res.status(400).json("Couldn't find this user")
   }
-});
+})
 
 //Listen the Server
 app.listen(3000, () => {
-  console.log("App is running!!");
-});
+  console.log("App is running!!")
+})
