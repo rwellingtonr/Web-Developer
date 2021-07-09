@@ -50,7 +50,7 @@ app.post("/register", (req, res) => {
   const saltRounds = 10
   const salt = bcrypt.genSaltSync(saltRounds)
   const hash = bcrypt.hashSync(password, salt)
-  //write into the Database
+  //write into the Database tables 'users' and 'login'
   db.transaction((trx) => {
     trx
       .insert({
