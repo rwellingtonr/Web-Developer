@@ -1,3 +1,4 @@
+import { response } from "express"
 import React, { Component } from "react"
 
 class Register extends Component {
@@ -23,7 +24,22 @@ class Register extends Component {
     this.setState({ password: event.target.value })
   }
   // Submit the registration
-  onClickRegister = () => {}
+  onClickRegister = async () => {
+    const { name, email, password } = this.status
+    //fetch the path for user registration
+    const response = await fetch("htpp://localhost:3000/register", {
+      method: "post",
+      body: JSON.stringify({
+        name: name,
+        email: email,
+        password: password,
+      }),
+    })
+    const user = response.json()
+    if (user) {
+      this.props.loadUser
+    }
+  }
 
   render() {
     return (
