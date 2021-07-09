@@ -38,6 +38,8 @@ class Register extends Component {
     if (user) {
       this.props.loadUser(user)
       this.props.onRouteChange("home")
+    } else {
+      console.error("check out")
     }
   }
 
