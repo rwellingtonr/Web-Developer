@@ -137,6 +137,8 @@ class App extends Component {
 
   render() {
     const { isSignedIn, imageUrl, route, box } = this.state
+    const { name, entries } = this.state.user
+
     return (
       <div className="App">
         <Particles className="particles" params={particlesOptions} />
@@ -148,7 +150,7 @@ class App extends Component {
         {route === "home" ? (
           <div>
             <Logo />
-            <Rank />
+            <Rank name={name} entries={entries} />
             <ImageLinkForm
               onInputChange={this.onInputChange}
               onButtonSubmit={this.onButtonSubmit}
@@ -159,7 +161,10 @@ class App extends Component {
         ) : route === "signin" ? (
           <SignIn onRouteChange={this.onRouteChange} />
         ) : (
-          <Register />
+          <Register
+            onRouteChange={this.onRouteChange}
+            loadUser={this.loadUser}
+          />
         )}
       </div>
     )
