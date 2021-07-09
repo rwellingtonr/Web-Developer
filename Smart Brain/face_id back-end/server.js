@@ -23,7 +23,7 @@ const db = kenx({
   connection: {
     host: "127.0.0.1",
     user: "postgres",
-    password: "Leardini213++",
+    password: "Wellington",
     database: "postgres",
   },
 })
@@ -68,7 +68,7 @@ app.post("/register", (req, res) => {
       })
       .then(trx.commit)
       .catch(trx.rollback)
-  }).catch((err) => res.status(400).json("unable to register"))
+  }).catch(() => res.status(400).json("unable to register"))
 })
 
 //Profile/:userId Page
@@ -100,6 +100,7 @@ app.post("/image", (req, res) => {
   if (!found) {
     res.status(400).json("Couldn't find this user")
   }
+  db("users").where("id", "=", id).then()
 })
 
 //Listen the Server
