@@ -75,16 +75,18 @@ app.post("/register", (req, res) => {
 //Profile/:userId Page
 app.get("/profile/:id", (req, res) => {
   const { id } = req.params
-  let found = false
-  database.users.forEach((user) => {
-    if (user.id === parseInt(id)) {
-      found = true
-      return res.json(user)
-    }
-  })
-  if (!found) {
-    res.status(400).json("Couldn't find this user")
-  }
+  //Catch the user profile
+  db.select("*")
+    .from("users")
+    .where("id", "=", id)
+    .then((user) => {
+      if (user.length) {
+        res.json(user[0])
+      } else {
+        res.json("Could'n find the user")
+      }
+    })
+    .catch(() => res.status(400).json("Error to find the user!"))
 })
 
 //Image Page
