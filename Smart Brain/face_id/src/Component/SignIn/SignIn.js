@@ -1,6 +1,14 @@
 import React, { Component } from "react"
 
 class SignIn extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      email: "",
+      password: "",
+    }
+  }
+
   //   change email
   onEmailChange = (event) => {
     this.setState({ email: event.target.value })
@@ -9,7 +17,26 @@ class SignIn extends Component {
   onPasswordChange = (event) => {
     this.setState({ password: event.target.value })
   }
-  onSubmitSigin = () => {}
+  //   when the user click the submit button
+  onSubmitSigin = async () => {
+    const { email, password } = this.state
+    // post the user credentials
+    const response = await fetch("htpp://localhost:3000/signin", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      }),
+    })
+    const user = await response.json()
+    if (user) {
+      this.props.loadUser(user)
+      this.props.onRouteChange("home")
+    } else {
+      console.error("Something went wrong!")
+    }
+  }
 
   render() {
     return (
