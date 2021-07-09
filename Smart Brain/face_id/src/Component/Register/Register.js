@@ -3,12 +3,27 @@ import React, { Component } from "react"
 class Register extends Component {
   constructor(props) {
     super(props)
-    status = {
+    this.status = {
       name: "",
       email: "",
       password: "",
     }
   }
+
+  //   change name
+  onNameChange = (event) => {
+    this.setState({ name: event.target.value })
+  }
+  // change email
+  onEmailChange = (event) => {
+    this.setState({ email: event.target.value })
+  }
+  // change password
+  onPasswordChange = (event) => {
+    this.setState({ password: event.target.value })
+  }
+  // Submit the registration
+  onClickRegister = () => {}
 
   render() {
     return (
@@ -30,6 +45,7 @@ class Register extends Component {
                 type="text"
                 name="Name"
                 id="Name"
+                onChange={this.onNameChange}
               />
             </div>
             <div className="mt3">
@@ -41,6 +57,7 @@ class Register extends Component {
                 type="email"
                 name="email-address"
                 id="email-address"
+                onChange={this.onEmailChange}
               />
             </div>
             <div className="mt3">
@@ -52,6 +69,7 @@ class Register extends Component {
                 type="password"
                 name="password"
                 id="password"
+                onChange={this.onPasswordChange}
               />
             </div>
           </fieldset>
@@ -59,7 +77,8 @@ class Register extends Component {
             <input
               className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f5 dib"
               type="submit"
-              value="Sign Up"
+              value="Register"
+              onClick={() => this.onClickRegister}
             />
           </div>
         </div>
