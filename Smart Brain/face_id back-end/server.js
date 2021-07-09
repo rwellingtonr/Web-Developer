@@ -12,11 +12,10 @@ import express from "express"
 import cors from "cors"
 import kenx from "knex"
 import bcrypt from "bcrypt"
-import e from "express"
 //server
 const app = express()
 app.use(cors())
-app.use(express.json)
+app.use(express.json())
 
 //Database
 const db = kenx({
