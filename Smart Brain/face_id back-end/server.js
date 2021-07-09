@@ -12,17 +12,18 @@ import express from "express"
 import cors from "cors"
 import kenx from "knex"
 import bcrypt from "bcrypt"
-
+//server
 const app = express()
 app.use(cors())
-app.use(express.json())
+app.use(express.json)
+
 //Database
 const db = kenx({
   client: "pg",
   connection: {
     host: "127.0.0.1",
     user: "postgres",
-    password: "Wellington",
+    password: "Leardini213++",
     database: "postgres",
   },
 })
@@ -43,12 +44,12 @@ app.post("/signin", (req, res) => {
 
 //Register Page
 app.post("/register", (req, res) => {
-  const { email, name, password } = req.body
-  // Hash the password
-  const saltRounds = 8
+  const { password, email, name } = req.body
+  //hash password
+  const saltRounds = 10
   const salt = bcrypt.genSaltSync(saltRounds)
   const hash = bcrypt.hashSync(password, salt)
-  //Join the users table and the login one
+  //write into the Database
   db.transaction((trx) => {
     trx
       .insert({
@@ -67,24 +68,38 @@ app.post("/register", (req, res) => {
       })
       .then(trx.commit)
       .catch(trx.rollback)
-  }).catch((e) => {
-    res.status(400).json("unable to register")
-    console.log(e)
+  }).catch((err) => res.status(400).json("unable to register"))
+})
+
+//Profile/:userId Page
+app.get("/profile/:id", (req, res) => {
+  const { id } = req.params
+  let found = false
+  database.users.forEach((user) => {
+    if (user.id === parseInt(id)) {
+      found = true
+      return res.json(user)
+    }
   })
+  if (!found) {
+    res.status(400).json("Couldn't find this user")
+  }
 })
 
 //Image Page
 app.post("/image", (req, res) => {
   const { id } = req.body
-  //increment the entries number
-  db("users")
-    .where("id", "=", id)
-    .increment("entries", 1)
-    .returning("entries")
-    .then((entries) => {
-      res.json(entries[0])
-    })
-    .catch((e) => res.status(400).json("Unable to increment entries"))
+  let found = false
+  database.users.forEach((user) => {
+    if (user.id === parseInt(id)) {
+      found = true
+      user.entries++
+      return res.json(user.entries)
+    }
+  })
+  if (!found) {
+    res.status(400).json("Couldn't find this user")
+  }
 })
 
 //Listen the Server
