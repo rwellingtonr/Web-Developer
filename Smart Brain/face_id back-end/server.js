@@ -12,6 +12,7 @@ import express from "express"
 import cors from "cors"
 import kenx from "knex"
 import bcrypt from "bcrypt"
+import e from "express"
 //server
 const app = express()
 app.use(cors())
@@ -89,18 +90,13 @@ app.get("/profile/:id", (req, res) => {
 //Image Page
 app.post("/image", (req, res) => {
   const { id } = req.body
-  let found = false
-  database.users.forEach((user) => {
-    if (user.id === parseInt(id)) {
-      found = true
-      user.entries++
-      return res.json(user.entries)
-    }
-  })
-  if (!found) {
-    res.status(400).json("Couldn't find this user")
-  }
-  db("users").where("id", "=", id).then()
+  // increment the user's entries
+  db("users")
+    .where("id", "=", id)
+    .increment("entries", 1)
+    .returning("entries")
+    .then((entries) => res.json(entries[0]))
+    .catch((e) => res.status(400).json("Unable to increment the entries :("))
 })
 
 //Listen the Server
