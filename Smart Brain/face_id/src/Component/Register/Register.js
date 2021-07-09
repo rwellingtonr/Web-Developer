@@ -1,4 +1,3 @@
-import { response } from "express"
 import React, { Component } from "react"
 
 class Register extends Component {
@@ -37,7 +36,8 @@ class Register extends Component {
     })
     const user = response.json()
     if (user) {
-      this.props.loadUser
+      this.props.loadUser(user)
+      this.props.onRouteChange("home")
     }
   }
 
