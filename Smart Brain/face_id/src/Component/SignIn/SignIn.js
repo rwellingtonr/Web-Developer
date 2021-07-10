@@ -84,7 +84,7 @@ class SignIn extends Component {
               <a
                 href="#0"
                 className="f5 link dim black db"
-                onClick={() => onRouteChange("register")}
+                onClick={() => this.onRouteChange("register")}
               >
                 Register
               </a>
