@@ -96,7 +96,7 @@ app.get("/profile/:id", (req, res) => {
 })
 
 //Image Page
-app.post("/image", (req, res) => {
+app.put("/image", (req, res) => {
   const { id } = req.body
   // increment the user's entries
   db("users")

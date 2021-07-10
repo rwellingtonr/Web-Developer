@@ -18,24 +18,39 @@ class SignIn extends Component {
     this.setState({ password: event.target.value })
   }
   //   when the user click the submit button
-  onSubmitSigin = async () => {
-    const { email, password } = this.state
-    // post the user credentials
-    const response = await fetch("htpp://localhost:3000/signin", {
+  onSubmitSigin = () => {
+    fetch("http://localhost:3000/signin", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        email: email,
-        password: password,
+        email: this.state.signInEmail,
+        password: this.state.signInPassword,
       }),
     })
-    const user = await response.json()
-    if (user) {
-      this.props.loadUser(user)
-      this.props.onRouteChange("home")
-    } else {
-      console.error("Something went wrong!")
-    }
+      .then((response) => response.json())
+      .then((user) => {
+        if (user.id) {
+          this.props.loadUser(user)
+          this.props.onRouteChange("home")
+        }
+      })
+    // const { email, password } = this.state
+    // // post the user credentials
+    // const response = await fetch("htpp://localhost:3000/signin", {
+    //   method: "post",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify({
+    //     email: email,
+    //     password: password,
+    //   }),
+    // })
+    // const user = await response.json()
+    // if (user) {
+    //   this.props.loadUser(user)
+    //   this.props.onRouteChange("home")
+    // } else {
+    //   console.error("Something went wrong!")
+    // }
   }
 
   render() {
@@ -75,10 +90,10 @@ class SignIn extends Component {
             </fieldset>
             <div className="">
               <input
-                className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f5 dib hover-white hover-bg-black"
+                onClick={this.onSubmitSigin}
+                className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
                 type="submit"
                 value="Sign in"
-                onClick={() => this.onSubmitSigin}
               />
             </div>
             <div className="lh-copy mt3">
