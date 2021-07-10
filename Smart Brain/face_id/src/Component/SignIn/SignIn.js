@@ -18,12 +18,12 @@ class SignIn extends Component {
     this.setState({ password: event.target.value })
   }
   //   when the user click the submit button
-  onSubmitSigin = () => {
+  onSubmitSigin = async () => {
     try {
       const { loadUser, onRouteChange } = this.props
       const { email, password } = this.state
       // // post the user credentials
-      fetch("http://localhost:3000/signin", {
+      const response = await fetch("http://localhost:3000/signin", {
         method: "post",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -31,17 +31,15 @@ class SignIn extends Component {
           password: password,
         }),
       })
-        .then((response) => response.json())
-        .then((user) => {
-          if (user.id) {
-            loadUser(user)
-            onRouteChange("home")
-          } else {
-            alert("Provide your user")
-          }
-        })
+      const user = await response.json()
+      if (user.id) {
+        loadUser(user)
+        onRouteChange("home")
+      } else {
+        alert("Provide your user")
+      }
     } catch (error) {
-      alert("Counldn`t find your user")
+      console.error(error)
     }
   }
 
