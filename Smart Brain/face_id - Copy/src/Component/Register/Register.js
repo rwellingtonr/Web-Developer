@@ -24,24 +24,22 @@ class Register extends Component {
   }
   // Submit the registration
   onClickRegister = async () => {
-    const { name, email, password } = this.state
-    const { loadUser, onRouteChange } = this.props
-    //write in the Database
-    const resp = await fetch("http://localhost:3000/register", {
+    const { name, email, password } = this.status
+    //fetch the path for user registration
+    const response = await fetch("htpp://localhost:3000/register", {
       method: "post",
-      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
+        name: name,
         email: email,
         password: password,
-        name: name,
       }),
     })
-    const user = await resp.json()
+    const user = await response.json()
     if (user) {
-      loadUser(user)
-      onRouteChange("home")
+      this.props.loadUser(user)
+      this.props.onRouteChange("home")
     } else {
-      console.error("ops!")
+      console.error("check out")
     }
   }
 
@@ -52,7 +50,7 @@ class Register extends Component {
           className="pa4"
           action="sign-up_submit"
           method="get"
-          acceptCharset="utf-8"
+          accept-charset="utf-8"
         >
           <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
             <legend className="f2 fw6 ph0 mh0 center">Register</legend>
@@ -95,10 +93,10 @@ class Register extends Component {
           </fieldset>
           <div className="mt3">
             <input
-              onClick={this.onClickRegister}
-              className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
+              className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f5 dib"
               type="submit"
               value="Register"
+              onClick={() => this.onClickRegister}
             />
           </div>
         </div>
