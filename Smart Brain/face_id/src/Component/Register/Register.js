@@ -27,7 +27,7 @@ class Register extends Component {
     const { name, email, password } = this.state
     const { loadUser, onRouteChange } = this.props
     //write in the Database
-    const resp = await fetch("http://localhost:3000/register", {
+    const register = await fetch("http://localhost:3000/register", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -36,7 +36,7 @@ class Register extends Component {
         name: name,
       }),
     })
-    const user = await resp.json()
+    const user = await register.json()
     if (user) {
       loadUser(user)
       onRouteChange("home")
