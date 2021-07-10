@@ -23,11 +23,11 @@ class Register extends Component {
     this.setState({ password: event.target.value })
   }
   // Submit the registration
-  onClickRegister = async () => {
+  onClickRegister = () => {
     const { name, email, password } = this.state
     const { loadUser, onRouteChange } = this.props
     //write in the Database
-    const response = await fetch("http://localhost:3000/register", {
+    fetch("http://localhost:3000/register", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -36,13 +36,13 @@ class Register extends Component {
         password: password,
       }),
     })
-    const user = await response.json()
-    if (user) {
-      loadUser(user)
-      onRouteChange("home")
-    } else {
-      console.error("ops!")
-    }
+      .then((response) => response.json())
+      .then((user) => {
+        if (user) {
+          loadUser(user)
+          onRouteChange("home")
+        }
+      })
   }
 
   render() {
