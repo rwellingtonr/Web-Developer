@@ -23,26 +23,30 @@ class Register extends Component {
     this.setState({ password: event.target.value })
   }
   // Submit the registration
-  onClickRegister = () => {
-    const { name, email, password } = this.state
-    const { loadUser, onRouteChange } = this.props
-    //write in the Database
-    fetch("http://localhost:3000/register", {
-      method: "post",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        name: name,
-        email: email,
-        password: password,
-      }),
-    })
-      .then((response) => response.json())
-      .then((user) => {
-        if (user) {
-          loadUser(user)
-          onRouteChange("home")
-        }
+  onClickRegister = async () => {
+    try {
+      const { loadUser, onRouteChange } = this.props
+      const { name, email, password } = this.state
+      //write in the Database
+      const response = await fetch("http://localhost:3000/register", {
+        method: "post",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: name,
+          email: email,
+          password: password,
+        }),
       })
+      const user = await response.json()
+      if (user.name.length > 1) {
+        loadUser(user)
+        onRouteChange("home")
+      } else {
+        alert("Provide all data")
+      }
+    } catch (error) {
+      alert("Provide all data")
+    }
   }
 
   render() {
@@ -61,7 +65,7 @@ class Register extends Component {
                 Name
               </label>
               <input
-                className="pa2 input-reset ba bg-transparent w-100 measure"
+                className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
                 type="text"
                 name="Name"
                 id="Name"
@@ -73,8 +77,9 @@ class Register extends Component {
                 Email address
               </label>
               <input
-                className="pa2 input-reset ba bg-transparent w-100 measure"
+                className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
                 type="email"
+                required
                 name="email-address"
                 id="email-address"
                 onChange={this.onEmailChange}
@@ -85,7 +90,7 @@ class Register extends Component {
                 Password
               </label>
               <input
-                className="b pa2 input-reset ba bg-transparent"
+                className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
                 type="password"
                 name="password"
                 id="password"
