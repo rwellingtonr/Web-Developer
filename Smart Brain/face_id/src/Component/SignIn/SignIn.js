@@ -19,24 +19,30 @@ class SignIn extends Component {
   }
   //   when the user click the submit button
   onSubmitSigin = () => {
-    const { loadUser, onRouteChange } = this.props
-    const { email, password } = this.state
-    // // post the user credentials
-    fetch("http://localhost:3000/signin", {
-      method: "post",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        email: email,
-        password: password,
-      }),
-    })
-      .then((response) => response.json())
-      .then((user) => {
-        if (user.id) {
-          loadUser(user)
-          onRouteChange("home")
-        }
+    try {
+      const { loadUser, onRouteChange } = this.props
+      const { email, password } = this.state
+      // // post the user credentials
+      fetch("http://localhost:3000/signin", {
+        method: "post",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: email,
+          password: password,
+        }),
       })
+        .then((response) => response.json())
+        .then((user) => {
+          if (user.id) {
+            loadUser(user)
+            onRouteChange("home")
+          } else {
+            alert("Provide your user")
+          }
+        })
+    } catch (error) {
+      alert("Counldn`t find your user")
+    }
   }
 
   render() {
