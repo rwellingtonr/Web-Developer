@@ -11,7 +11,7 @@ import Register from "./Component/Register/Register"
 
 // liberty
 import Clarifai from "clarifai"
-import Particles from "react-particles-js"
+// import Particles from "react-particles-js"
 
 const particlesOptions = {
   particles: {
