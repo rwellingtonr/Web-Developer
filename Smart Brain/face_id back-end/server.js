@@ -47,7 +47,8 @@ app.post("/register", register.handleRegister(db, bcrypt))
 app.get("/profile/:id", profile.profileId(db))
 
 //Image Page
-app.put("/image", image.imgCounter(db))
+app.put("/image", image.imgCounter(db)) //update the entries
+app.post("/imageurl", image.handleAPI())
 
 //Listen the Server
 app.listen(3000, () => {
