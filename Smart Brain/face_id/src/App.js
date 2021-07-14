@@ -10,31 +10,36 @@ import SignIn from "./Component/SignIn/SignIn"
 import Register from "./Component/Register/Register"
 
 // liberty
-import Clarifai from "clarifai"
+//Particles
 import PArticlesOpt from "./particlesjs-config.json"
 import Particles from "react-particles-js"
 
+//API responsible for recognise the faces
+import Clarifai from "clarifai"
 const app = new Clarifai.App({
   apiKey: "f8a81a51540c49c0b23bc7ea54242acd",
 })
 
+//Conditionals to initialize the Web App
+const initialState = {
+  input: "",
+  imageUrl: "",
+  box: {},
+  route: "signin",
+  isSignedIn: false,
+  user: {
+    id: "",
+    name: "",
+    email: "",
+    entries: 0,
+    joined: "",
+  },
+}
+
 class App extends Component {
   constructor() {
     super()
-    this.state = {
-      input: "",
-      imageUrl: "",
-      box: {},
-      route: "signin",
-      isSignedIn: false,
-      user: {
-        id: "",
-        name: "",
-        email: "",
-        entries: 0,
-        joined: "",
-      },
-    }
+    this.state = initialState
   }
   // Updates the user data
   loadUser = (user) => {
@@ -70,6 +75,7 @@ class App extends Component {
             .then((count) => {
               this.setState(Object.assign(this.state.user, { entries: count }))
             })
+            .catch(console.log)
         }
         this.displayFaceBox(this.calculateFaceLocation(response))
       })
@@ -116,7 +122,7 @@ class App extends Component {
 
   onRouteChange = (route) => {
     if (route === "signout") {
-      this.setState({ route: route })
+      this.setState(initialState)
     } else if (route === "home") {
       this.setState({ isSignedIn: true })
     }
