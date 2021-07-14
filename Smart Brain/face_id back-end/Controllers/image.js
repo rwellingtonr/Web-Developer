@@ -1,4 +1,4 @@
-const imgCounter = (req, res, db) => {
+const imgCounter = (db) => (req, res) => {
   const { id } = req.body
   // increment the user's entries
   db("users")

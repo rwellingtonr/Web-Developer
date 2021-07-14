@@ -1,4 +1,4 @@
-const login = (req, res, db, bcrypt) => {
+const login = (db, bcrypt) => (req, res) => {
   const { email, password } = req.body
 
   //Check in the user and the password

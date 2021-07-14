@@ -38,24 +38,16 @@ const db = kenx({
 // Root Page
 app.get("/", () => {})
 //Signin Page
-app.post("/signin", (req, res) => {
-  signin.login(req, res, db, bcrypt)
-})
+app.post("/signin", signin.login(db, bcrypt))
 
 //Register Page
-app.post("/register", (req, res) => {
-  register.handleRegister(req, res, db, bcrypt)
-})
+app.post("/register", register.handleRegister(db, bcrypt))
 
 //Profile/:userId Page
-app.get("/profile/:id", (req, res) => {
-  profile.profileId(req, res, db)
-})
+app.get("/profile/:id", profile.profileId(db))
 
 //Image Page
-app.put("/image", (req, res) => {
-  image.imgCounter(req, res, db)
-})
+app.put("/image", image.imgCounter(db))
 
 //Listen the Server
 app.listen(3000, () => {

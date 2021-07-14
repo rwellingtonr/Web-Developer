@@ -1,4 +1,4 @@
-const profileId = (req, res, db) => {
+const profileId = (db) => (req, res) => {
   const { id } = req.params
   //Catch the user profile
   db.select("*")
