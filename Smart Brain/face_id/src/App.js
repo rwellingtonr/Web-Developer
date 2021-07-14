@@ -52,34 +52,40 @@ class App extends Component {
     this.setState({ input: event.target.value })
   }
 
-  onButtonSubmit = () => {
-    this.setState({ imageUrl: this.state.input })
-    fetch("http://localhost:3000/imageurl", {
-      method: "post",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        input: this.state.input,
-      }),
-    })
-      .then((response) => response.json())
-      .then((response) => {
-        if (response) {
-          fetch("http://localhost:3000/image", {
-            method: "put",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              id: this.state.user.id,
-            }),
-          })
-            .then((response) => response.json())
-            .then((count) => {
-              this.setState(Object.assign(this.state.user, { entries: count }))
-            })
-            .catch(console.log)
-        }
-        this.displayFaceBox(this.calculateFaceLocation(response))
+  onButtonSubmit = async () => {
+    const { input, user } = this.state
+    this.setState({ imageUrl: input })
+    try {
+      const imageUrl = await fetch("http://localhost:3000/imageurl", {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: window.sessionStorage.getItem("token"),
+        },
+        body: JSON.stringify({
+          input: input,
+        }),
       })
-      .catch((err) => console.log(err))
+      const responseImg = await await imageUrl.json()
+      if (responseImg) {
+        const image = await fetch("http://localhost:3000/image", {
+          method: "put",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            id: this.state.user.id,
+          }),
+        })
+        const count = await image.json()
+        if (count) {
+          this.setState(Object.assign(user, { entries: count }))
+        } else {
+          console.log("error")
+        }
+      }
+      this.displayFaceBox(this.calculateFaceLocation(responseImg))
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   calculateFaceLocation = (data) => {
