@@ -25,5 +25,4 @@ const handleRegister = (req, res, db, bcrypt) => {
       .catch(trx.rollback)
   }).catch(() => res.status(400).json("unable to register"))
 }
-
 export default { handleRegister }
