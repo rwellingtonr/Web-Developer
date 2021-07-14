@@ -11,19 +11,8 @@ import Register from "./Component/Register/Register"
 
 // liberty
 import Clarifai from "clarifai"
-// import Particles from "react-particles-js"
-
-const particlesOptions = {
-  particles: {
-    line_linked: {
-      shadow: {
-        enable: true,
-        color: "#3CA9D1",
-        blur: 5,
-      },
-    },
-  },
-}
+import PArticlesOpt from "./particlesjs-config.json"
+import Particles from "react-particles-js"
 
 const app = new Clarifai.App({
   apiKey: "f8a81a51540c49c0b23bc7ea54242acd",
@@ -140,7 +129,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        {/*<Particles className="particles" params={particlesOptions} />*/}
+        <Particles className="particles" params={PArticlesOpt} />
         <Navigation
           isSignedIn={isSignedIn}
           onRouteChange={this.onRouteChange}
