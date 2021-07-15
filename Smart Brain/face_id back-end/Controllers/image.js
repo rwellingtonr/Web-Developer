@@ -7,13 +7,16 @@ const app = new Clarifai.App({
 
 const handleAPI = () => (req, res) => {
   const { input } = req.body
-
-  app.models
-    .predict(Clarifai.FACE_DETECT_MODEL, input)
-    .then((data) => {
-      res.json(data)
-    })
-    .catch(() => res.status(400).json("unable to work with API"))
+  try {
+    app.models
+      .predict(Clarifai.FACE_DETECT_MODEL, input)
+      .then((data) => {
+        res.json(data)
+      })
+      .catch(() => res.status(400).json("unable to work with API"))
+  } catch (error) {
+    console.log("Error with credentials", error)
+  }
 }
 
 const imgCounter = (db) => (req, res) => {

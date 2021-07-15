@@ -54,9 +54,8 @@ class App extends Component {
 
   onButtonSubmit = async () => {
     const { input, user } = this.state
-    this.setState({ imageUrl: input })
     try {
-      const imageUrl = await fetch("http://localhost:3000/imageurl", {
+      const response = await fetch("http://localhost:3000/imageurl", {
         method: "post",
         headers: {
           "Content-Type": "application/json",
@@ -66,25 +65,33 @@ class App extends Component {
           input: input,
         }),
       })
-      const responseImg = await await imageUrl.json()
-      if (responseImg) {
-        const image = await fetch("http://localhost:3000/image", {
+      const faceImg = await response.json()
+      // Check whether there is or there isn't a face in the picture
+      if (faceImg.outputs[0].data.regions[0].value) {
+        const res = await fetch("http://localhost:3000/image", {
           method: "put",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: window.sessionStorage.getItem("token"),
+          },
           body: JSON.stringify({
             id: this.state.user.id,
           }),
         })
-        const count = await image.json()
-        if (count) {
-          this.setState(Object.assign(user, { entries: count }))
-        } else {
-          console.log("error")
-        }
+        //load the image
+        this.setState({ imageUrl: input })
+        //count the entries
+        const count = await res.json()
+        this.setState(Object.assign(user, { entries: count }))
+        //call the callculation
+        this.displayFaceBox(this.calculateFaceLocation(faceImg))
       }
-      this.displayFaceBox(this.calculateFaceLocation(responseImg))
-    } catch (error) {
-      console.log(error)
+    } catch (err) {
+      console.log(err)
+      alert("This image hasn't a face!")
+    } finally {
+      const inputForm = document.getElementById("inputForm")
+      inputForm.value = ""
     }
   }
 
