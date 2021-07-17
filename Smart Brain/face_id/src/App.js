@@ -55,6 +55,7 @@ class App extends Component {
   onButtonSubmit = async () => {
     const { input, user } = this.state
     try {
+      this.setState({ imageUrl: input })
       const response = await fetch("http://localhost:3000/imageurl", {
         method: "post",
         headers: {
@@ -79,7 +80,6 @@ class App extends Component {
           }),
         })
         //load the image
-        this.setState({ imageUrl: input })
         //count the entries
         const count = await res.json()
         this.setState(Object.assign(user, { entries: count }))
@@ -87,6 +87,7 @@ class App extends Component {
         this.displayFaceBox(this.calculateFaceLocation(faceImg))
       }
     } catch (err) {
+      this.setState({ imageUrl: "" })
       console.log(err)
       alert("This image hasn't a face!")
     } finally {
@@ -145,7 +146,6 @@ class App extends Component {
   render() {
     const { isSignedIn, imageUrl, route, box } = this.state
     const { name, entries } = this.state.user
-
     return (
       <div className="App">
         <Particles className="particles" params={PArticlesOpt} />

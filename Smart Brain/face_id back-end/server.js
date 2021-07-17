@@ -30,10 +30,11 @@ const db = kenx({
   client: process.env.CLIENT_POSTGRESS,
   connection: {
     host: process.env.HOST_POSTGRESS,
-    user: process.env.postgres,
+    user: process.env.USER,
     password: process.env.PASSWORD_POSTGRESS,
     database: process.env.DATABASE_KEY,
   },
+  searchPath: ["knex", "public"],
 })
 
 const SERVER_PATH = process.env.SERVER_PATH
@@ -54,6 +55,7 @@ app.post("/imageurl", image.handleAPI())
 
 //Listen the Server
 app.listen(SERVER_PATH, () => {
+  // console.log(db("login").select("*"))
   console.log(`App is running, server ${SERVER_PATH}!!`)
 })
 // console.log(SERVER_PATH_KEY)
