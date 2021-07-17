@@ -12,6 +12,7 @@ import express from "express"
 import cors from "cors"
 import kenx from "knex"
 import bcrypt from "bcrypt"
+import dotenv from "dotenv/config"
 
 //  Controlers
 import register from "./Controllers/register.js"
@@ -26,15 +27,16 @@ app.use(express.json())
 
 //Database
 const db = kenx({
-  client: "pg",
+  client: process.env.CLIENT_POSTGRESS,
   connection: {
-    host: "127.0.0.1",
-    user: "postgres",
-    password: "Wellington",
-    database: "postgres",
+    host: process.env.HOST_POSTGRESS,
+    user: process.env.postgres,
+    password: process.env.PASSWORD_POSTGRESS,
+    database: process.env.DATABASE_KEY,
   },
 })
 
+const SERVER_PATH = process.env.SERVER_PATH
 // Root Page
 app.get("/", () => {})
 //Signin Page
@@ -51,6 +53,7 @@ app.put("/image", image.imgCounter(db)) //update the entries
 app.post("/imageurl", image.handleAPI())
 
 //Listen the Server
-app.listen(3000, () => {
-  console.log("App is running!!")
+app.listen(SERVER_PATH, () => {
+  console.log(`App is running, server ${SERVER_PATH}!!`)
 })
+// console.log(SERVER_PATH_KEY)
