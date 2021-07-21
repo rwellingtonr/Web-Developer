@@ -1,0 +1,4 @@
+{
+  "appService.defaultWebAppToDeploy": "/subscriptions/eab2249f-5d82-489d-ab18-575240317d91/resourceGroups/Free/providers/Microsoft.Web/sites/facerecognitionw",
+  "appService.deploySubpath": "face_id"
+}
